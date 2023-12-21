@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp">
+        <RelativeLayout
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:backgroundTint="#FFFFFF"
+            >
+            <ImageButton
+                android:id="@+id/imageButton"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="40dp"
+                android:backgroundTint="#529EDA"
+                app:srcCompat="@android:drawable/ic_menu_search" />
+
+            <ImageButton
+                android:id="@+id/imageButton2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#529EDA"
+                android:layout_below="@+id/imageButton"
+                app:srcCompat="@android:drawable/ic_menu_sort_by_size" />
+            <Button
+                android:id="@+id/addDb"
+                android:onClick="addMedicationToDatabase"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imageButton2"
+                android:backgroundTint="@color/white"/>
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#529EDA"
+            android:padding="15dp"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/plansTitle"
+                android:text="Мои планы"
+                android:textSize="30dp"
+                android:textColor="@color/white"
+                android:textStyle="bold"/>
+
+            <ListView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/plansListView"
+                android:layout_marginTop="50dp"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/createPlanBtn"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:backgroundTint="#FFFFFF"
+                android:onClick="createPlan"
+                android:text="+"
+                android:textColor="#529EDA"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:cornerRadius="@android:dimen/thumbnail_height" />
+
+
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>
