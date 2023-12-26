@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -20,20 +22,21 @@ import java.util.Set;
 public class MainActivity extends AppCompatActivity {
     private ListView plansListView;
     private ArrayList<String> listOfPlans;
-
+    private Button addDb;
+    private ImageButton imageButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        imageButton = findViewById(R.id.imageButton);
         plansListView = findViewById(R.id.plansListView);
-
+        addDb = findViewById(R.id.addDb);
         // Получаем список планов из SharedPreferences
         listOfPlans = getPlansFromSharedPreferences();
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listOfPlans);
         plansListView.setAdapter(adapter);
-
         // Установим слушатель щелчка на элемент списка
         plansListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -41,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
                 viewMedications(position);
             }
         });
-
+        // Удаление плана при долгом нажатии
         plansListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
@@ -50,13 +53,26 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+        // Обработка события нажания на кнопку для добавления лекарства
+        addDb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addMedicationToDatabase();
+            }
+        });
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                searchMed();
+            }
+        });
     }
-
+    // Функция перехода на страницу создания нового плана
     public void createPlan(View v) {
         Intent intent = new Intent(this, createPlan.class);
         startActivity(intent);
     }
-
+    // Фунция отображения списка лекарств
     public void viewMedications(int position) {
 
         if (position != ListView.INVALID_POSITION) {
@@ -100,14 +116,19 @@ public class MainActivity extends AppCompatActivity {
         listOfPlans = getPlansFromSharedPreferences();
         updateListView();
     }
-
+    //Функция обновления списка планов
     private void updateListView() {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listOfPlans);
         plansListView.setAdapter(adapter);
     }
-
+    // Функция добавления лекаства в базу данных
     private void addMedicationToDatabase() {
         Intent intent = new Intent(this, AddMedicationActivity.class);
+        startActivity(intent);
+    }
+    // Функция перехода на страницу поиска лекарств
+    private void searchMed(){
+        Intent intent = new Intent(this, SearchMedicationsActivity.class);
         startActivity(intent);
     }
 }

@@ -80,7 +80,6 @@ public class planDetails extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, medicationsList);
         medicationsListView.setAdapter(adapter);
     }
-
     public void editPlan(View view) {
         // Получаем название плана
         String planName = getIntent().getStringExtra("selectedPlan");

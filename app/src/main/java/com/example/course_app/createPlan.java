@@ -45,7 +45,7 @@ public class createPlan extends AppCompatActivity {
             String planToEdit = getIntent().getStringExtra("planToEdit");
             loadPlanData(planToEdit);
         }
-
+        // При нажатии на кнопку сохраняем и переходим на главную страницу
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -54,14 +54,13 @@ public class createPlan extends AppCompatActivity {
             }
         });
     }
-
+    // функция добавления новых инпутов для лекарств
     public void addEditText(View view) {
         EditText newEditText = new EditText(this);
         newEditText.setHint("Введите название лекарства");
         medicationsLayout.addView(newEditText);
         medicationsEditTextList.add(newEditText);
     }
-
     public void savePlan() {
         String planName = planNameEditText.getText().toString();
         ArrayList<String> medicationsList = new ArrayList<>();
@@ -95,6 +94,7 @@ public class createPlan extends AppCompatActivity {
         // Применяем изменения
         editor.apply();
     }
+    // функция переходп на главную страницу
     public void goBack(View v) {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
@@ -115,7 +115,7 @@ public class createPlan extends AppCompatActivity {
             addEditTextWithText(medication);
         }
     }
-
+    // функция отображения уже сохраненных лекарств
     private void addEditTextWithText(String text) {
         EditText newEditText = new EditText(this);
         newEditText.setHint("Введите название лекарства");

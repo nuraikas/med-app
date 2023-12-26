@@ -12,6 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Courseapp"
         tools:targetApi="31">
+        <activity android:name=".AddMedicationActivity"
+            android:exported="false"/>
         <activity android:name=".SearchMedicationsActivity"
             android:exported="true">
             <intent-filter>

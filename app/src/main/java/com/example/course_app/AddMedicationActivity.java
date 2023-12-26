@@ -27,20 +27,29 @@ public class AddMedicationActivity extends AppCompatActivity {
     }
 
     public void addMedication(View view) {
+        // Получение текста из полей ввода для названия и описания лекарства
         String medicationName = medicationNameEditText.getText().toString().trim();
         String medicationDescription = medicationDescriptionEditText.getText().toString().trim();
 
+        // Проверка, что название лекарства не пустое
         if (!TextUtils.isEmpty(medicationName)) {
+            // Вызов метода для добавления лекарства в базу данных
             databaseHelper.addMedication(medicationName, medicationDescription);
+
+            // Отображение сообщения об успешном добавлении
             Toast.makeText(this, "Лекарство успешно добавлено", Toast.LENGTH_SHORT).show();
+
+            // Очистка полей ввода
             clearFields();
         } else {
+            // Если название лекарства пустое, напоминаем пользователю ввести название
             Toast.makeText(this, "Введите название лекарства", Toast.LENGTH_SHORT).show();
         }
     }
-
+    // Метод для очистки полей ввода
     private void clearFields() {
         medicationNameEditText.getText().clear();
         medicationDescriptionEditText.getText().clear();
     }
+
 }
